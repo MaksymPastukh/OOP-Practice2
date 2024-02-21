@@ -9,9 +9,12 @@ export class Person {
   get birthDay() {
     return `${this.#birthDay}`
   }
+  set birthDay (days) {
+    this.#birthDay = days
+  }
 
   getFullName() {
-    return `${this.firstName} ${this.lastName}}`
+    return `${this.firstName} ${this.lastName}`
   }
 
   getAge() {
@@ -29,4 +32,4 @@ export class Person {
 }
 
 
-console.log(new Person().getAge())
+
