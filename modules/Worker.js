@@ -15,6 +15,7 @@ export class Worker extends Person {
 
   set rate(gold) {
     let oneWorkDay = 1
+    // Если зарплата больше 1000 и равна 1 дню работы, то меняем зарплату
     if (gold >= 1000 && oneWorkDay === 1) {
       this.#rate = gold
     } else {
@@ -23,9 +24,12 @@ export class Worker extends Person {
   }
 
   addDays(workDays) {
+    // Получаем количество дней в текущем месяце
     function getDaysInCurrentMonth() {
+      // Создаем новую дату
       const date = new Date();
 
+      // Возвращаем количество дней в текущем месяце
       return new Date(
         date.getFullYear(),
         date.getMonth() + 1,
@@ -42,30 +46,39 @@ export class Worker extends Person {
   }
 
   getSalary() {
+    // Получаем текущую дату месяца
     const currentDate = new Date().getMonth() + 1
+    // Получаем дату рождения
     let birthDate = new Date(this.birthDay).getMonth() + 1
+    // Сравниваем дату рождения с текущей датой
     if (currentDate === birthDate) {
+      // Если дата рождения совпадает с текущей датой, то добавляем 10% к зарплате
       let percent = 10
       let newSalary = this.#rate + (this.#rate * percent) / 100
       return newSalary * this.#days
     } else {
+      // Если дата рождения не совпадает с текущей датой, то возвращаем зарплату за месяц без бонуса
       return this.#rate * this.#days
     }
   }
 
   getFullName() {
+    // Возвращаем имя и фамилию с помощью геттера из родительского класса
     return `${super.getFullName()}`;
   }
 
   get birthDay() {
+    // Возвращаем дату рождения с помощью геттера
     return super.birthDay
   }
 
   set birthDay(date) {
+    // Устанавливаем дату рождения с помощью сеттера
     super.birthDay = date;
   }
 
   getDays() {
+    // Возвращаем количество отработанных дней
     return this.#days
   }
 
@@ -82,8 +95,11 @@ export class Worker extends Person {
   }
 
   getAge() {
+    // Получаем текущую дату
     const date = new Date()
+    // Получаем дату рождения
     let birth = new Date(this.birthDay)
+    // Получаем возраст в годах
     let ageInMillisecond = date - birth,
       ageInSeconds = ageInMillisecond / 1000,
       ageInMinutes = ageInSeconds / 60,
@@ -91,6 +107,7 @@ export class Worker extends Person {
       ageInDays = ageInHorse / 24,
       ageInYear = ageInDays / 365
 
+    // Возвращаем возраст в годах
     return ageInYear.toFixed()
   }
 
@@ -125,7 +142,6 @@ obj3.addDays(27)
 let obj4 = new Worker('David', 'Ivanow', '07-11-2010', 'UI-UX')
 obj4.birthDay = '12-01-1988'
 obj4.addDays(22)
-
 
 
 Worker.whoWorkerMore(obj1, obj2, obj3, obj4)
