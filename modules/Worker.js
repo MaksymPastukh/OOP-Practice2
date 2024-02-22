@@ -5,8 +5,9 @@ export class Worker extends Person {
   #days = 0
 
   constructor(firstName, lastName, birthDay, position) {
-    super(firstName, lastName, birthDay);
+    super(firstName, lastName);
     this.position = position
+    this.birthDay = birthDay
   }
 
   get rate() {
@@ -41,7 +42,7 @@ export class Worker extends Person {
     if (workDays >= 1 && workDays <= result) {
       this.#days = workDays
     } else {
-      console.log(`Ошибка! Нету возможности установить данную дату`)
+      console.log(`Ошибка! Нету возможности установить данное количество отработанных дней`)
     }
   }
 
@@ -119,33 +120,9 @@ export class Worker extends Person {
     let minAgeWorker = workers.filter(worker => +worker.getAge() === minAge)
 
     // Проходимся циклом по массиву циклом и возвращаем строку с человеком который младше всех
-    minAgeWorker.forEach(item => console.log(`${item.getFullName()} ${item.getAge()}`))
+    minAgeWorker.forEach(item => console.log(`Самый младший сотрудник в команде: ${item.getFullName()} ${item.getAge()}`))
   }
 }
-
-
-let obj1 = new Worker('Max', 'Pastukh', '11-10-1995', 'FrontEnd')
-obj1.addDays(10)
-obj1.birthDay = '02-02-2004'
-obj1.rate = 2000
-console.log(obj1.getSalary())
-console.log(obj1)
-
-let obj2 = new Worker('Vadim', 'Pupkow', '01-12-2003', 'BeckEnd')
-obj2.birthDay = '12-01-1999'
-obj2.addDays(29)
-
-let obj3 = new Worker('Alex', 'Kriptunow', '04-04-2001', 'WebDesing')
-obj3.birthDay = '12-01-1988'
-obj3.addDays(27)
-
-let obj4 = new Worker('David', 'Ivanow', '07-11-2010', 'UI-UX')
-obj4.birthDay = '12-01-1988'
-obj4.addDays(22)
-
-
-Worker.whoWorkerMore(obj1, obj2, obj3, obj4)
-Worker.whoIsYounger(obj1, obj2, obj3, obj4)
 
 
 
